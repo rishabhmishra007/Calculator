@@ -1,12 +1,35 @@
-# React + Vite
+# 🧮 Calculator App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple yet powerful calculator application built using **React.js**, styled with **Tailwind CSS**, and deployed on **Vercel** for seamless access.
 
-Currently, two official plugins are available:
+![Screenshot 2025-04-20 194305](https://github.com/user-attachments/assets/9a656a0b-66fd-4647-8936-5a1c23ff3989)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Basic Arithmetic** – Perform addition, subtraction, multiplication, and division.
+- **Keyboard Support** – Interact effortlessly using both mouse clicks and keyboard shortcuts.
+- **Responsive Design** – Optimized for mobile and desktop users.
+- **Lightweight & Fast** – Minimalistic, efficient, and user-friendly interface.
+
+## 🛠️ Technologies Used
+
+- **React.js** – Component-based UI framework.
+- **Tailwind CSS** – Utility-first CSS for styling.
+- **Vercel** – Cloud platform for deployment.
+
+## 📸 Preview
+
+Check out the live demo here: [Live Project](https://calculator-puce-five-38.vercel.app/)
+
+## ⚡ Getting Started
+
+To run the project locally, follow these steps:
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/calculator.git
+cd calculator
+npm install
+npm run dev
