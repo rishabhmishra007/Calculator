@@ -288,8 +288,8 @@ const Calculator = () => {
     <button
       onClick={() => digitPressed(digit)}
       className={`rounded-full ${theme.buttonBg} ${theme.buttonText} ${theme.buttonHover} ${theme.buttonActive} 
-        flex items-center justify-center text-xl md:text-2xl font-medium transition-all duration-150 ${theme.shadow}
-        h-14 sm:h-16 md:h-20 ${className}`}
+        flex items-center justify-center text-lg xs:text-xl sm:text-2xl md:text-xl lg:text-2xl font-medium transition-all duration-150 ${theme.shadow}
+        h-12 xs:h-14 sm:h-16 md:h-14 lg:h-16 ${className} touch-manipulation`}
     >
       {digit}
     </button>
@@ -299,8 +299,8 @@ const Calculator = () => {
     <button
       onClick={() => operatorPressed(operator)}
       className={`rounded-full ${theme.operatorBg} text-white ${theme.operatorHover} ${theme.operatorActive}
-        flex items-center justify-center text-xl md:text-2xl font-medium transition-all duration-150 ${theme.shadow}
-        h-14 sm:h-16 md:h-20 ${className}`}
+        flex items-center justify-center text-lg xs:text-xl sm:text-2xl md:text-xl lg:text-2xl font-medium transition-all duration-150 ${theme.shadow}
+        h-12 xs:h-14 sm:h-16 md:h-14 lg:h-16 ${className} touch-manipulation`}
     >
       {label || operator}
     </button>
@@ -317,8 +317,8 @@ const Calculator = () => {
     <button
       onClick={onClick}
       className={`rounded-full ${color} text-white ${hoverColor} ${activeColor}
-        flex items-center justify-center text-lg md:text-xl font-medium transition-all duration-150 ${theme.shadow}
-        h-14 sm:h-16 md:h-20 ${className}`}
+        flex items-center justify-center text-sm xs:text-base sm:text-lg md:text-base lg:text-lg font-medium transition-all duration-150 ${theme.shadow}
+        h-12 xs:h-14 sm:h-16 md:h-14 lg:h-16 ${className} touch-manipulation`}
     >
       {label}
     </button>
@@ -326,17 +326,19 @@ const Calculator = () => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center min-h-screen transition-colors duration-300 w-full ${theme.bg} select-none`}
+      className={`flex items-center justify-center min-h-screen w-full ${theme.bg} select-none relative`}
+      style={{ minHeight: "100vh" }}
     >
       <div
-        className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto p-2 sm:p-3 md:p-4 flex flex-col flex-1"
-        style={{ minHeight: "unset", maxHeight: "95vh" }}
+        className="flex flex-col bg-transparent rounded-2xl shadow-lg overflow-hidden w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-full max-h-[95vh]"
+        style={{ height: "95vh" }}
       >
-        <div className="flex justify-between mb-4">
-          <div className="flex space-x-2">
+        {/* Header Controls */}
+        <div className="flex justify-between items-center mb-1 px-2 pt-2 flex-shrink-0">
+          <div className="flex space-x-1">
             <button
               onClick={() => setShowAdvanced(!showAdvanced)}
-              className={`px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-all
+              className={`px-2 xs:px-3 py-1 rounded-full text-xs xs:text-sm font-medium transition-all
               ${
                 isDarkTheme
                   ? "bg-gray-800 text-gray-300 hover:bg-gray-700"
@@ -347,7 +349,7 @@ const Calculator = () => {
             </button>
             <button
               onClick={() => setShowMemory(!showMemory)}
-              className={`px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-all
+              className={`px-2 xs:px-3 py-1 rounded-full text-xs xs:text-sm font-medium transition-all
               ${
                 isDarkTheme
                   ? "bg-gray-800 text-gray-300 hover:bg-gray-700"
@@ -359,15 +361,18 @@ const Calculator = () => {
           </div>
           <button
             onClick={toggleTheme}
-            className={`rounded-full w-8 h-8 flex items-center justify-center ${
-              isDarkTheme ? "text-white" : "text-gray-900"
+            className={`rounded-full w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 flex items-center justify-center transition-all ${
+              isDarkTheme
+                ? "text-white hover:bg-gray-800"
+                : "text-gray-900 hover:bg-gray-200"
             }`}
           >
             {isDarkTheme ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="16"
+                height="16"
+                className="xs:w-5 xs:h-5 sm:w-6 sm:h-6"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -381,8 +386,9 @@ const Calculator = () => {
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="16"
+                height="16"
+                className="xs:w-5 xs:h-5 sm:w-6 sm:h-6"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -395,36 +401,47 @@ const Calculator = () => {
             )}
           </button>
         </div>
+
+        {/* Display */}
         <div
-          className={`${theme.displayBg} rounded-2xl mb-5 p-3 sm:p-4 md:p-6 ${theme.shadow} w-full max-w-full`}
+          className={`${theme.displayBg} rounded-xl mb-1 px-2 py-1 ${theme.shadow} w-full flex-shrink-0`}
         >
-          <div className="h-8 sm:h-10 overflow-y-auto text-right">
+          <div className="h-4 xs:h-6 sm:h-8 md:h-10 overflow-y-auto text-right">
             {history.length > 0 && (
-              <div className={`text-xs sm:text-sm ${theme.textSecondary}`}>
+              <div
+                className={`text-xs xs:text-sm sm:text-base ${theme.textSecondary} break-words`}
+              >
                 {history[history.length - 1]}
               </div>
             )}
           </div>
           {showMemory && memory !== 0 && (
             <div
-              className={`text-xs sm:text-sm text-left mb-1 ${theme.textSecondary}`}
+              className={`text-xs xs:text-sm sm:text-base text-left mb-1 ${theme.textSecondary}`}
             >
               M = {memory}
             </div>
           )}
           <div
-            className={`text-right text-base sm:text-lg ${theme.textSecondary} overflow-x-auto break-all`}
+            className={`text-right text-sm xs:text-base sm:text-lg md:text-xl ${theme.textSecondary} overflow-x-auto break-all`}
           >
             {secondaryDisplay}
           </div>
           <div
-            className={`text-right text-3xl sm:text-4xl md:text-5xl font-semibold mt-1 overflow-x-auto whitespace-nowrap break-all ${theme.text}`}
+            className={`text-right text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-semibold mt-1 overflow-x-auto whitespace-nowrap ${theme.text}`}
+            style={{
+              minHeight: "1.2em",
+              lineHeight: "1.1",
+              wordBreak: "break-all",
+            }}
           >
             {display}
           </div>
         </div>
+
+        {/* Memory Controls */}
         {showMemory && (
-          <div className="grid grid-cols-4 gap-1 sm:gap-2 md:gap-3 mb-3">
+          <div className="grid grid-cols-4 gap-1 mb-1 px-2 flex-shrink-0">
             <FunctionButton
               onClick={memoryClear}
               label="MC"
@@ -455,8 +472,10 @@ const Calculator = () => {
             />
           </div>
         )}
+
+        {/* Advanced Controls */}
         {showAdvanced && (
-          <div className="grid grid-cols-4 gap-1 sm:gap-2 md:gap-3 mb-3">
+          <div className="grid grid-cols-4 gap-1 mb-1 px-2 flex-shrink-0">
             <FunctionButton
               onClick={sqrtPressed}
               label="√"
@@ -489,7 +508,9 @@ const Calculator = () => {
             />
           </div>
         )}
-        <div className="grid grid-cols-4 gap-1 sm:gap-2 md:gap-3">
+
+        {/* Main Calculator Grid */}
+        <div className="grid grid-cols-4 gap-1 mb-1 px-2 flex-grow">
           <FunctionButton onClick={allClearPressed} label="AC" />
           <FunctionButton onClick={changeSignPressed} label="+/-" />
           <FunctionButton onClick={percentPressed} label="%" />
@@ -506,7 +527,10 @@ const Calculator = () => {
           <DigitButton digit="2" />
           <DigitButton digit="3" />
           <OperatorButton operator="+" label="+" />
-          <DigitButton digit="0" className="col-span-2 pl-6 justify-start" />
+          <DigitButton
+            digit="0"
+            className="col-span-2 justify-start pl-4 xs:pl-6"
+          />
           <DigitButton digit="." />
           <FunctionButton
             onClick={equalsPressed}
@@ -516,17 +540,21 @@ const Calculator = () => {
             activeColor={theme.equalsActive}
           />
         </div>
-        <div className="mt-3 flex justify-end">
+
+        {/* Backspace Button */}
+        <div className="flex justify-end px-2 pb-1 flex-shrink-0">
           <FunctionButton
             onClick={backspacePressed}
             label="⌫"
-            className="w-14 sm:w-16"
+            className="w-10"
           />
         </div>
+
+        {/* Footer */}
+        <div className="w-full text-center pb-1 flex-shrink-0">
+          <p className="text-xs text-gray-400">made by Rishabh @ 2025</p>
+        </div>
       </div>
-      <p className="mt-2 text-xs text-center text-gray-400">
-        made by Rishabh @ 2025
-      </p>
     </div>
   );
 };
